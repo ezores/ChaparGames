@@ -6,15 +6,15 @@
 #define CHAPARABEOYUN_GAME_H
 
 #include <string>
-
+using namespace std;
 class Game {
 public:
-    Game(std::string gameName, std::string playerName);
+    Game(string gameName, string playerName);
     virtual ~Game();
 
-    std::string getGameName() const;
+    string getGameName() const;
     void setGameName(std::string name);
-    std::string getPlayerName() const;
+    string getPlayerName() const;
     void setPlayerName(std::string name);
     int getScore() const;
     void setScore(int score);
@@ -24,8 +24,8 @@ public:
     virtual void rules() const = 0;
 
 private:
-    std::string gameName;
-    std::string playerName;
+    string gameName;
+    string playerName;
     int score;
 };
 

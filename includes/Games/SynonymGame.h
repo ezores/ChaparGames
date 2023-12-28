@@ -14,7 +14,7 @@ using namespace std;
 
 class SynonymGame : public Game {
 public:
-    SynonymGame(std::string playerName);
+    SynonymGame(string playerName);
 
     // Override virtual methods
     void start() override;
@@ -22,8 +22,8 @@ public:
     void rules() const override;
 
 private:
-    std::vector<std::string> synonyms;
-    std::string currentWord;
+    vector<string> synonyms;
+    string currentWord;
     int maxAttempts;
 };
 

@@ -7,10 +7,16 @@
 
 #include "Game.h"
 #include <vector>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+
+using namespace std;
 
 class GuessMovieGame : public Game {
 public:
-    GuessMovieGame(std::string playerName);
+    GuessMovieGame(string playerName);
 
     // Override virtual methods
     void start() override;
@@ -18,9 +24,9 @@ public:
     void rules() const override;
 
 private:
-    std::vector<std::string> movies;
-    std::string currentMovie;
-    std::string maskedMovie;
+    vector<std::string> movies;
+    string currentMovie;
+    string maskedMovie;
     int maxAttempts;
 };
 
