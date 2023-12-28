@@ -7,6 +7,10 @@
 
 #include "Game.h"
 #include <vector>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 class SynonymGame : public Game {
 public:

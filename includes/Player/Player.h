@@ -6,6 +6,8 @@
 #define CHAPARABEOYUN_PLAYER_H
 
 #include <string>
+#include <utility>
+using namespace std;
 
 class Player {
 public:

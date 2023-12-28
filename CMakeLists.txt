@@ -8,4 +8,10 @@ add_executable(ChaparAbeOyun src/main.cpp
         includes/Games/GuessMovieGame.h
         includes/Games/YourGame.h
         includes/Games/SynonymGame.h
-        includes/Player/Player.h)
+        includes/Player/Player.h
+        src/Player/Player.cpp
+        src/Games/YourGame.cpp
+        src/Games/SynonymGame.cpp
+        src/Games/Game.cpp
+        src/Games/GuessMovieGame.cpp
+)
