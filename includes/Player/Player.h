@@ -10,6 +10,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ public:
     int getScore() const;
     void updateScore(int points);
 
-    static std::vector<Player> readFromTSV(const std::string filename);
+    static std::vector<Player> readFromTSV(const std::string& filename);
     static void writeToTSV(const std::vector<Player>& players, const std::string& filename);
 
 private:

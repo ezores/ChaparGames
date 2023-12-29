@@ -24,19 +24,30 @@ void Player::updateScore(int points) {
     score += points;
 }
 
-std::vector<Player> Player::readFromTSV(const std::string filename) {
+std::vector<Player> Player::readFromTSV(const std::string& filename) {
     std::vector<Player> players;
     std::ifstream file(filename);
     std::string line;
 
     while (std::getline(file, line)) {
+
+        if (line.empty()) {
+            continue;
+        }
+
         std::istringstream iss(line);
-        std::string username, gameName, score;
+        std::string username, gameName, scoreStr;
         std::getline(iss, username, '\t');
         std::getline(iss, gameName, '\t');
-        std::getline(iss, score, '\t');
-        int scoreInt = std::stoi(score);
-        players.emplace_back(username, gameName, std::stoi(score));
+        std::getline(iss, scoreStr, '\t');
+
+        try {
+            int scoreInt = std::stoi(scoreStr);
+            players.emplace_back(username, gameName, scoreInt);
+        } catch (const std::invalid_argument& e) {
+            std::cerr << "Invalid score format: " << scoreStr << std::endl;
+            // Handle the error or continue
+        }
     }
     return players;
 }
