@@ -7,6 +7,7 @@
 #include "../includes/Games/SynonymGame.h"
 #include "../includes/Games/YourGame.h"
 #include "../includes/Player/Player.h"
+
 /**
  * Shows the main menu options of the game
  * @param
@@ -74,6 +75,9 @@ int main() {
                                          [&](const Player& p) { return p.getUsername() == playerName; });
             if (playerIt != players.end()) {
                 playerIt->updateScore(games[choice - 1]->getScore());
+                std::cout << "Game Over! " << playerIt->getUsername()
+                          << "'s score: " << playerIt->getScore()
+                          << std::endl;
             }
         } else if(choice == 4){
             exitGame = true;

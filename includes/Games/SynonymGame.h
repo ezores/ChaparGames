@@ -10,6 +10,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <map>
+
 using namespace std;
 
 class SynonymGame : public Game {

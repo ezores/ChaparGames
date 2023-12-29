@@ -14,34 +14,46 @@ SynonymGame::SynonymGame(std::string playerName) : Game("Synonym Game", playerNa
 
 void SynonymGame::start() {
     printf("TEST SYNONYM\n");
-    srand(static_cast<unsigned>(time(nullptr))); //NEEDS TO BE CHANGED - We need to predict the word from the sentence
-    currentWord = synonyms[rand() % synonyms.size()]; //NEEDS TO BE CHANGED - We need to predict the word from the sentence
+    // Select a random synonym for the game
+    std::map <std::string, std::vector<std::string>> synonymMap = {
+            {"happy", {"glad", "joyful", "merry", "cheerful", "delighted"}},
+            {"smart", {"clever", "intelligent", "bright", "brilliant", "sharp"}},
+            {"beautiful", {"pretty", "lovely", "handsome", "attractive", "gorgeous"}},
+            {"strong", {"powerful", "mighty", "tough", "solid", "firm"}},
+            {"creative", {"imaginative", "inventive", "innovative", "original", "artistic"}}
+    };
 
-    currentWord = synonyms[0];
-    cout << "Guess the synonym of: " << currentWord << endl;
+    // Select a random synonym for the game
+    auto iterator = synonymMap.begin();
+    std::advance(iterator, rand() % synonymMap.size());
+    std::string selectedWord = iterator->first;
+    std::vector<std::string> selectedSynonyms = iterator->second;
 
-    // Game logic
+    // Select a random synonym for the game
+    std::string correctSynonym = selectedSynonyms[rand() % selectedSynonyms.size()];
+
+    // Now use 'selectedWord' and 'correctSynonym' in your game logic
+    std::cout << "Guess the synonym of the word: " << selectedWord << std::endl;
+
     int attempts = 0;
-    string userGuess;
-
+    std::string guess;
     while (attempts < maxAttempts) {
-        cout << "Attempt " << attempts + 1 << ": ";
-        cin >> userGuess;
+        std::cout << "Attempt " << attempts + 1 << ": ";
+        std::cin >> guess;
 
-        if (userGuess == currentWord) {
-            cout << "Correct! You guessed the synonym." << endl;
-            score += (maxAttempts - attempts); // Update the score based on the number of attempts
+        if (guess == correctSynonym) {
+            std::cout << "Correct! The synonym is " << correctSynonym << "." << std::endl;
+            score += (maxAttempts - attempts); // For example, 5 - number of attempts
             break;
         } else {
-            cout << "Incorrect. Try again." << endl;
-            attempts++;
+            std::cout << "Incorrect. Try again." << std::endl;
         }
+        attempts++;
     }
 
-    // Display the correct synonym
-    cout << "The synonym was: " << currentWord << endl;
-    score = 1000000; // Update the score based on the number of attempts --> DEBUG
-    end(); // End the game and display the final score
+    if (attempts == maxAttempts) {
+        std::cout << "Out of attempts. The synonym was: " << correctSynonym << std::endl;
+    }
 }
 
 void SynonymGame::end() {
