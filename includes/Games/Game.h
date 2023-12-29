@@ -26,6 +26,7 @@ public:
 private:
     string gameName;
     string playerName;
+protected:
     int score;
 };
 

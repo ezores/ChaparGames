@@ -4,12 +4,13 @@
 
 #include "../../includes/Games/YourGame.h"
 
-YourGame::YourGame() : Game("Your Game", "Player Name") {
+YourGame::YourGame(basic_string<char> basicString) : Game("Your Game", "Player Name") {
     // YourGame sınıfının yapıcı fonksiyonunun implementasyonu
 }
 
 void YourGame::start() {
     // start fonksiyonunun implementasyonu
+    printf("TEST YOURGAME\n");
 }
 
 void YourGame::end() {

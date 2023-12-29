@@ -16,6 +16,8 @@ using namespace std;
 
 class GuessMovieGame : public Game {
 public:
+    GuessMovieGame();
+
     GuessMovieGame(string playerName);
 
     // Override virtual methods

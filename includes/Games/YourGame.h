@@ -9,7 +9,7 @@
 
 class YourGame : public Game {
 public:
-    YourGame();  // Yapıcı fonksiyonun bildirimi
+    YourGame(basic_string<char> basicString);  // Yapıcı fonksiyonun bildirimi
     void start() override;
     void end() override;
     void rules() const override;

@@ -14,6 +14,8 @@ using namespace std;
 
 class SynonymGame : public Game {
 public:
+    SynonymGame();
+
     SynonymGame(string playerName);
 
     // Override virtual methods

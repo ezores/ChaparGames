@@ -1,92 +1,78 @@
 #include <iostream>
+#include <vector>
+#include <memory> //std:unique_ptr
 
-//int main() {
-//    std::cout << "sada N Hello, World!" << std::endl;
-//
-//    return 0;
-//}
-// Base Game class
-class Game {
-public:
-    // Constructor
-    Game(std::string gameName);
+#include "../includes/Games/Game.h"
+#include "../includes/Games/GuessMovieGame.h"
+#include "../includes/Games/SynonymGame.h"
+#include "../includes/Games/YourGame.h"
 
-    // Destructor
-    virtual ~Game();
+/**
+ * Shows the main menu options of the game
+ * @param
+ * @return choice
+ */
+int displayMainMenu(int& choice){
+    std::cout << "Welcome to the Game Center!" << std::endl;
+    std::cout << "Please select a game to play:" << std::endl;
+    std::cout << "1. Synonym Game" << std::endl;
+    std::cout << "2. Guess the Movie Game" << std::endl;
+    std::cout << "3. Your Game" << std::endl;
+    std::cout << "4. Exit" << std::endl;
+    std::cout << "Enter your choice: ";
+    std::cin >> choice;
+    return choice;
+}
 
-    // Accessor and Mutator Methods
-    std::string getGameName() const;
-    void setGameName(std::string name);
-
-    // Virtual methods to be overridden by derived classes
-    virtual void start() = 0;
-    virtual void end() = 0;
-    virtual void rules() const = 0;
-
-    // Other common methods
-
-protected:
-    std::string gameName;
-};
-
-// Player class
-class Player {
-public:
-    Player(std::string username, std::string gameName);
-    std::string getUsername() const;
-    std::string getGameName() const;
-    int getScore() const;
-    void updateScore(int points);
-
-private:
-    std::string username;
-    std::string gameName;
-    int score;
-};
-
-// SynonymGame class derived from Game
-class SynonymGame : public Game {
-public:
-    SynonymGame();
-    void start() override;
-    void end() override;
-    void rules() const override;
-
-private:
-    // Add specific data members and methods for the SynonymGame
-};
-
-// GuessMovieGame class derived from Game
-class GuessMovieGame : public Game {
-public:
-    GuessMovieGame();
-    void start() override;
-    void end() override;
-    void rules() const override;
-
-private:
-    // Add specific data members and methods for the GuessMovieGame
-};
-
-// YourGame class derived from Game
-class YourGame : public Game {
-public:
-    YourGame();
-    void start() override;
-    void end() override;
-    void rules() const override;
-
-private:
-    // Add specific data members and methods for YourGame
-};
-
-// Main function
+/**
+ * Main function
+ * @return
+ * params:
+ */
 int main() {
     // Implement the main menu and game loop here
+    // Create a vector of Game pointers to store the different game types
+    // Create a vector of Player objects to store the players
+    // Read the games.txt file to populate the vector of Game pointers
+    // Read the players.txt file to populate the vector of Player objects
     // Use polymorphism to create instances of different game types
     // Allow the player to choose a game, view rules, set difficulty, and play
     // After each game, display the player's score and return to the main menu
-    printf("Hello World!\n");
 
+    bool exitGame = false;
+    int choice=0;
+
+    // Create a vector of Game pointers to store the different game types
+    std::vector<std::unique_ptr<Game>> games;
+    games.push_back(std::make_unique<SynonymGame>(std::string("Player Name")));
+    games.push_back(std::make_unique<GuessMovieGame>(std::string("Player Name")));
+    games.push_back(std::make_unique<YourGame>(std::string("Player Name")));
+
+    //Main game loop
+    while(!exitGame) {
+
+        displayMainMenu(choice);
+
+        switch(choice) {
+            case 1:
+                games[0]->start();
+                break;
+            case 2:
+                games[1]->start();
+                break;
+            case 3:
+                games[2]->start();
+                break;
+            case 4:
+                exitGame = true;
+                break;
+            default:
+                std::cout <<"Invalid choice. Please try again." << std::endl;
+        }
+    }
+
+    std::cout <<"Thank you for playing!" << std::endl;
     return 0;
 }
+
+

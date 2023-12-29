@@ -4,6 +4,10 @@
 
 #include "../../includes/Games/GuessMovieGame.h"
 
+GuessMovieGame::GuessMovieGame() : Game("Guess Movie Game", "Player Name"), maxAttempts(5) {
+    movies = {"The Godfather", "Inception", "Titanic", "Forrest Gump", "Avatar"};
+}
+
 GuessMovieGame::GuessMovieGame(std::string playerName) : Game("Guess Movie Game", playerName), maxAttempts(5) {
     movies = {"The Godfather", "Inception", "Titanic", "Forrest Gump", "Avatar"};
 }
@@ -16,7 +20,7 @@ void GuessMovieGame::start() {
     // Mask the movie name
     maskedMovie = currentMovie;
     std::replace_if(maskedMovie.begin(), maskedMovie.end(), ::isalpha, '*');
-
+    printf("TEST GUESMOVIEGAME\n");
     // Game logic
     // ...
 }
