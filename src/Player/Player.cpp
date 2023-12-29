@@ -61,5 +61,24 @@ void Player::writeToTSV(const vector<Player> &players, const string &filename) {
     }
 }
 
+std::vector<Player> Player::getTopScores(const std::string& filename, int topN) {
+    try {
+        std::vector<Player> players = readFromTSV(filename);
+        std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
+            return a.getScore() > b.getScore();
+        });
+
+        if (players.size() > topN) {
+            return std::vector<Player>(players.begin(), players.begin() + topN);
+        }
+        return players;
+    } catch (const std::exception& e) {
+        std::cerr << "Error processing top scores: " << e.what() << std::endl;
+        // Return an empty vector or handle the error as needed
+        return std::vector<Player>();
+    }
+}
+
+
 
 

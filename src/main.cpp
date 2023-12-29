@@ -19,7 +19,8 @@ int displayMainMenu(int& choice){
     std::cout << "1. Synonym Game" << std::endl;
     std::cout << "2. Guess the Movie Game" << std::endl;
     std::cout << "3. Your Game" << std::endl;
-    std::cout << "4. Exit" << std::endl;
+    std::cout << "4. View Top Scores" << std::endl;
+    std::cout << "5. Exit" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
     return choice;
@@ -80,7 +81,15 @@ int main() {
                           << "'s score: " << playerIt->getScore()
                           << std::endl;
             }
-        } else if(choice == 4){
+        }
+        else if (choice == 4) {  // Assuming 6 is the choice for viewing top scores
+            auto topPlayers = Player::getTopScores(filename, 10);
+            std::cout << "Top Scores:\n";
+            for (const auto& player : topPlayers) {
+                std::cout << player.getUsername() << '\t' << player.getScore() << '\n';
+            }
+        }
+        else if(choice == 5){
             exitGame = true;
         } else {
             std::cout << "Invalid choice. Please try again." << std::endl;

@@ -11,6 +11,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ public:
 
     static std::vector<Player> readFromTSV(const std::string& filename);
     static void writeToTSV(const std::vector<Player>& players, const std::string& filename);
-
+    static std::vector<Player> getTopScores(const std::string& filename, int topN = 10);
 private:
     std::string username;
     std::string gameName;
