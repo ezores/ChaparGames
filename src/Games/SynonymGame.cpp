@@ -40,7 +40,7 @@ void SynonymGame::start() {
 
     // Display the correct synonym
     cout << "The synonym was: " << currentWord << endl;
-    score = 1000000; // Update the score based on the number of attempts
+    score = 1000000; // Update the score based on the number of attempts --> DEBUG
     end(); // End the game and display the final score
 }
 

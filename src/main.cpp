@@ -81,9 +81,15 @@ int main() {
             std::cout << "Invalid choice. Please try again." << std::endl;
         }
     }
+    //Player::writeToTSV(players, "../DB/Players.tsv");
+    //test players data
+    std::vector<Player> My_players;
+    My_players.emplace_back("Player1", "Synonym Game", 10);
+    My_players.emplace_back("Player2", "Guess Movie Game", 15);
+    My_players.emplace_back("Player3", "Your Game", 20);
 
     // Write updated players data back to the file
-    Player::writeToTSV(players, filename);
+    Player::writeToTSV(My_players, filename);
     std::cout << "Thank you for playing!" << std::endl;
     return 0;
 }
