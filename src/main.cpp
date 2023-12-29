@@ -41,10 +41,15 @@ int main() {
 
     bool exitGame = false;
     int choice=0;
+    std::string filename = "../DB/Players.tsv";
 
     //Read players from file
-    std::string filename = "../DB/Players.tsv";
     std::vector<Player> players = Player::readFromTSV(filename);
+
+    // Enter player name
+    std::string playerName;
+    std::cout << "Enter your name: ";
+    std::cin >> playerName;
 
     // Create a vector of Game pointers to store the different game types
     std::vector<std::unique_ptr<Game>> games;
@@ -57,25 +62,29 @@ int main() {
 
         displayMainMenu(choice);
 
-        switch(choice) {
-            case 1:
-                games[0]->start();
-                break;
-            case 2:
-                games[1]->start();
-                break;
-            case 3:
-                games[2]->start();
-                break;
-            case 4:
-                exitGame = true;
-                break;
-            default:
-                std::cout <<"Invalid choice. Please try again." << std::endl;
+        if(choice >= 1 && choice <= 3) {
+            //Display rules
+            games[choice - 1]->rules();
+
+            //Start game
+            games[choice - 1]->start();
+
+            //Find player by name and update their score
+            auto playerIt = std::find_if(players.begin(), players.end(),
+                                         [&](const Player& p) { return p.getUsername() == playerName; });
+            if (playerIt != players.end()) {
+                playerIt->updateScore(games[choice - 1]->getScore());
+            }
+        } else if(choice == 4){
+            exitGame = true;
+        } else {
+            std::cout << "Invalid choice. Please try again." << std::endl;
         }
     }
 
-    std::cout <<"Thank you for playing!" << std::endl;
+    // Write updated players data back to the file
+    Player::writeToTSV(players, filename);
+    std::cout << "Thank you for playing!" << std::endl;
     return 0;
 }
 
