@@ -7,15 +7,22 @@
 
 #include <string>
 #include <utility>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 class Player {
 public:
-    Player(std::string username, std::string gameName);
+    Player(std::string username, std::string gameName, int score = 0);
     std::string getUsername() const;
     std::string getGameName() const;
     int getScore() const;
     void updateScore(int points);
+
+    static std::vector<Player> readFromTSV(const std::string filename);
+    static void writeToTSV(const std::vector<Player>& players, const std::string& filename);
 
 private:
     std::string username;

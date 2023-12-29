@@ -6,7 +6,7 @@
 #include "../includes/Games/GuessMovieGame.h"
 #include "../includes/Games/SynonymGame.h"
 #include "../includes/Games/YourGame.h"
-
+#include "../includes/Player/Player.h"
 /**
  * Shows the main menu options of the game
  * @param
@@ -41,6 +41,10 @@ int main() {
 
     bool exitGame = false;
     int choice=0;
+
+    //Read players from file
+    std::string filename = "../DB/Players.tsv";
+    std::vector<Player> players = Player::readFromTSV(filename);
 
     // Create a vector of Game pointers to store the different game types
     std::vector<std::unique_ptr<Game>> games;
