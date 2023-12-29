@@ -49,11 +49,14 @@ void SynonymGame::start() {
             std::cout << "Incorrect. Try again." << std::endl;
         }
         attempts++;
+
     }
 
     if (attempts == maxAttempts) {
         std::cout << "Out of attempts. The synonym was: " << correctSynonym << std::endl;
     }
+    setScore(score);
+
 }
 
 void SynonymGame::end() {

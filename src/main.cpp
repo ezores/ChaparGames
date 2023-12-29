@@ -54,9 +54,9 @@ int main() {
 
     // Create a vector of Game pointers to store the different game types
     std::vector<std::unique_ptr<Game>> games;
-    games.push_back(std::make_unique<SynonymGame>(std::string("Player Name")));
-    games.push_back(std::make_unique<GuessMovieGame>(std::string("Player Name")));
-    games.push_back(std::make_unique<YourGame>(std::string("Player Name")));
+    games.push_back(std::make_unique<SynonymGame>(playerName));
+    games.push_back(std::make_unique<GuessMovieGame>(playerName));
+    games.push_back(std::make_unique<YourGame>(playerName));
 
     //Main game loop
     while(!exitGame) {
@@ -69,6 +69,7 @@ int main() {
 
             //Start game
             games[choice - 1]->start();
+            players.emplace_back(playerName, games[choice - 1]->getGameName(), games[choice - 1]->getScore());
 
             //Find player by name and update their score
             auto playerIt = std::find_if(players.begin(), players.end(),
